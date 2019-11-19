@@ -16,13 +16,34 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
+import java.util.Collection;
+import com.example.waoquiz.db.DbManager;
+import androidx.appcompat.app.AlertDialog;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+//    private final DbManager.ReadAllListener<String> readListener = new DbManager.ReadAllListener<String>() {
+//        @Override
+//        public void onReadAll(final Collection<String> allItems) {
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    showStringList(allItems);
+//                }
+//            });
+//        }
+//    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        final DbManager manager = DbManager.getInstance(this);
+//        manager.insert("Test string");
+//        manager.readAll(readListener);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,5 +73,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void showStringList(final Collection<String> list) {
+        new AlertDialog.Builder(this)
+                .setItems(list.toArray(new String[0]), null)
+                .show();
     }
 }
