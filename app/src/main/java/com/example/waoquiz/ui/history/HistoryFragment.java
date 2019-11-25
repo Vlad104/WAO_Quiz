@@ -49,7 +49,7 @@ public class HistoryFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.text_history);
 
         final DbManager manager = DbManager.getInstance(getActivity());
-        manager.insert("Each time I add this");
+        manager.insert("Инфа об играх из sqlite");
         manager.readAll(readListener);
 
         historyViewModel.getText().observe(this, new Observer<String>() {
