@@ -16,7 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IEventListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -51,5 +51,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onGameStart(String theme) {
+        Bundle bundle = new Bundle();
+        bundle.putString("THEME", theme);
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_game, bundle);
+    }
+
+    @Override
+    public void onGameEnd() {
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_home);
     }
 }
