@@ -9,40 +9,48 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.waoquiz.R;
+import com.example.waoquiz.IEventListener;
 
 import java.util.List;
 
 public class ThemeViewHolder extends RecyclerView.ViewHolder {
-    private TextView _textView;
-    private LinearLayout _themesContainer;
+    private TextView textView;
+    private LinearLayout themesContainer;
     private Context context;
+    private IEventListener clickListener;
 
-    ThemeViewHolder(@NonNull View itemView) {
+    ThemeViewHolder(@NonNull View itemView, IEventListener clickListener_) {
         super(itemView);
-        _textView = itemView.findViewById(R.id.item_home);
-        _themesContainer = itemView.findViewById(R.id.themes_container);
+        textView = itemView.findViewById(R.id.item_home);
+        themesContainer = itemView.findViewById(R.id.themes_container);
         context = itemView.getContext();
+        clickListener = clickListener_;
     }
 
     public void removeAllThemes() {
-        _themesContainer.removeAllViewsInLayout();
+        themesContainer.removeAllViewsInLayout();
     }
 
     TextView getTextView() {
-        return _textView;
+        return textView;
     }
 
     public void setText(String text) {
-        _textView.setText(text);
+        textView.setText(text);
     }
 
-    public void setThemes(List<String> themes) {
+    public void setThemes(String theme) {
         removeAllThemes();
-        for (String theme : themes) {
-            Button newButton = new Button(context);
-            newButton.setText(theme);
-            _themesContainer.addView(newButton);
-        }
+        final Button newButton = new Button(context);
+        newButton.setText(theme);
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String theme = newButton.getText().toString();
+                clickListener.onGameStart(theme);
+            }
+        });
+        themesContainer.addView(newButton);
     }
 }
 

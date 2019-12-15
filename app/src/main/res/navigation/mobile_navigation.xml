@@ -23,4 +23,10 @@
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 
+    <fragment
+        android:id="@+id/nav_game"
+        android:name="com.example.waoquiz.ui.game.GameFragment"
+        android:label="GAME"
+        tools:layout="@layout/fragment_game" />
+
 </navigation>
