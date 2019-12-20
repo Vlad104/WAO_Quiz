@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.example.waoquiz.R;
+import com.example.waoquiz.db.History;
 
 class HistoryAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    private List<String> mHystory = new ArrayList<>();
+    private List<History> mHystory = new ArrayList<>();
 
-    public void setHistory(List<String> history) {
+    public void setHistory(List<History> history) {
         mHystory = history;
         notifyDataSetChanged();
     }
@@ -29,8 +30,8 @@ class HistoryAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final String history = mHystory.get(position);
-        holder.setText(history);
+        final History history = mHystory.get(position);
+        holder.setHistory(history);
     }
 
     @Override

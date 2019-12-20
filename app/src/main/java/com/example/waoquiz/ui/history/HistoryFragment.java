@@ -10,10 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.waoquiz.R;
-import com.example.waoquiz.db.DbManager;
+import com.example.waoquiz.db.History;
 
 
 import java.util.Arrays;
@@ -29,65 +29,39 @@ public class HistoryFragment extends Fragment {
     private HistoryViewModel historyViewModel;
     private HistoryAdapter adapter;
 
-    private final DbManager.ReadAllListener<String> readListener = new DbManager.ReadAllListener<String>() {
-        @Override
-        public void onReadAll(final Collection<String> allItems) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    update(allItems);
-                }
-            });
-        }
-    };
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_history, container, false);
-        final TextView textView = root.findViewById(R.id.text_history);
+        return inflater.inflate(R.layout.fragment_history, container, false);
+    }
 
-        final DbManager manager = DbManager.getInstance(getActivity());
-        manager.insert("Инфа об играх из sqlite");
-        manager.readAll(readListener);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        historyViewModel.getText().observe(this, new Observer<String>() {
+        historyViewModel = new ViewModelProvider(getActivity())
+                .get(HistoryViewModel.class);
+
+        final TextView textView = view.findViewById(R.id.text_history);
+        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
 
-        RecyclerView recycler = root.findViewById(R.id.list_view);
+        RecyclerView recycler = view.findViewById(R.id.list_view);
         adapter = new HistoryAdapter();
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Observer<List<String>> observer = new Observer<List<String>>() {
-            @Override
-            public void onChanged(List<String> history) {
-                if (history != null) {
-                    adapter.setHistory(history);
+        historyViewModel.getHistory().observe(getViewLifecycleOwner(), new Observer<List<History>>() {
+                @Override
+                public void onChanged(List<History> history) {
+                    if (history != null) {
+                        adapter.setHistory(history);
+                    }
                 }
-            }
-        };
-
-        historyViewModel
-                .getHistory()
-                .observe(getViewLifecycleOwner(), observer);
-
-        return root;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-
-    private void update(final Collection<String> list) {
-        List<String> arr = new ArrayList<>(Arrays.asList(list.toArray(new String[0])));
-        adapter.setHistory(arr);
+            });
     }
 }

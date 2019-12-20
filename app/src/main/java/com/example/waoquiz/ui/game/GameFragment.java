@@ -69,9 +69,6 @@ public class GameFragment extends Fragment {
                     gameLogic(answer);
                 }
             });
-//            if (newButton.getParent() != null) {
-//                ((ViewGroup) newButton.getParent()).removeView(newButton);
-//            }
             answersContainer.addView(newButton);
         }
     }
@@ -84,9 +81,15 @@ public class GameFragment extends Fragment {
 
     private void gameLogic(String answer) {
         if (gameViewModel.checkAnswer(answer)) {
-            gameViewModel.nextQuestion();
-            update(gameViewModel.getCurrentQuestion());
+            boolean hasNext = gameViewModel.nextQuestion();
+            if (hasNext) {
+                update(gameViewModel.getCurrentQuestion());
+            } else {
+                gameViewModel.gameEnd();
+                clickListener.onGameEnd();
+            }
         } else {
+            gameViewModel.gameEnd();
             clickListener.onGameEnd();
         }
     }
