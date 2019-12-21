@@ -62,6 +62,6 @@ public class GameViewModel extends AndroidViewModel {
                 .getHistoriesDb()
                 .getHistoryDao()
                 .insertHistory(new History(mGame.theme, number, mGame.questions.size()));
+        number = 0;
     }
-
 }

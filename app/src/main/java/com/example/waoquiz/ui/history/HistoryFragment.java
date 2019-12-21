@@ -42,14 +42,6 @@ public class HistoryFragment extends Fragment {
         historyViewModel = new ViewModelProvider(getActivity())
                 .get(HistoryViewModel.class);
 
-        final TextView textView = view.findViewById(R.id.text_history);
-        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
         RecyclerView recycler = view.findViewById(R.id.list_view);
         adapter = new HistoryAdapter();
         recycler.setAdapter(adapter);
@@ -63,5 +55,14 @@ public class HistoryFragment extends Fragment {
                     }
                 }
             });
+
+        view.findViewById(R.id.history_reset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                historyViewModel.reset();
+            }
+        });
+
+        historyViewModel.update();
     }
 }

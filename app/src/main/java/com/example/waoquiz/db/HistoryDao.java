@@ -13,6 +13,9 @@ public interface HistoryDao {
     @Query("SELECT * FROM History")
     List<History> getAll();
 
+    @Query("DELETE FROM History")
+    void deleteAll();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertHistory(History history);
 

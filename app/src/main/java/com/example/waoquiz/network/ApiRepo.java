@@ -11,8 +11,8 @@ import com.example.waoquiz.ApplicationModified;
 public class ApiRepo {
     private final GameApi mGameApi;
     private final OkHttpClient mOkHttpClient;
-    private final String HOST = "10.0.2.2";
-    private final int PORT = 3333;
+    private final String HOST = "104.248.39.207";
+    private final int PORT = 3332;
 
     public ApiRepo() {
         mOkHttpClient = new OkHttpClient()
