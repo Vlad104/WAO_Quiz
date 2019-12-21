@@ -13,26 +13,23 @@ import com.example.waoquiz.db.History;
 import java.util.List;
 
 public class HistoryViewModel extends AndroidViewModel  {
-
-    private MutableLiveData<String> mText;
     private MutableLiveData<List<History>> histories = new MutableLiveData<>();
 
     public HistoryViewModel(@NonNull Application application) {
         super(application);
-//        DBHelper.getInstance(getApplication()).getHistoriesDb().getHistoryDao().insertHistory(new History("C++", 7, 10));
-//        DBHelper.getInstance(getApplication()).getHistoriesDb().getHistoryDao().insertHistory(new History("Rust", 1, 2));
-
-        mText = new MutableLiveData<>();
-        mText.setValue("История игр");
-
         histories.setValue(DBHelper.getInstance(getApplication()).getHistoriesDb().getHistoryDao().getAll());
-    }
-
-    public LiveData<String> getText() {
-        return mText;
     }
 
     public LiveData<List<History>> getHistory() {
         return histories;
+    }
+
+    public void update() {
+        histories.setValue(DBHelper.getInstance(getApplication()).getHistoriesDb().getHistoryDao().getAll());
+    }
+
+    public void reset() {
+        DBHelper.getInstance(getApplication()).getHistoriesDb().getHistoryDao().deleteAll();
+        update();
     }
 }

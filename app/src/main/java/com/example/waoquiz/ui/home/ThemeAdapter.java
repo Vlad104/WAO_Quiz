@@ -35,7 +35,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ThemeViewHolder holder, int position) {
         final String theme = mThemes.get(position);
-        holder.setThemes(theme);
+        holder.setTheme(theme);
     }
 
     @Override
