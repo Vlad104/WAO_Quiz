@@ -4,4 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/nav_header_vertical_spacing"
-    android:orientation="vertical"></Button>
+
+    android:background="@drawable/ic_button_background"
+    android:orientation="vertical"
+    android:textColor="@color/colorButtonWhiteText"
+    android:textSize="18sp"
+    ></Button>

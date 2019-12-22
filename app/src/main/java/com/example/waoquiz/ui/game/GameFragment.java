@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,11 @@ public class GameFragment extends Fragment {
         answersContainer.removeAllViewsInLayout();
         for (Game.Answer answer : question.answers) {
             final Button newButton = new Button(getContext());
+//            newButton.setBackgroundColor(R.color.colorAnswerButton);
+//            final Button newButton = findViewById(R.id.button_id);
+//            newButton.set
+
+
             final boolean isRight = answer.rigth;
             if (isRight) {
                 rightButton = newButton;
