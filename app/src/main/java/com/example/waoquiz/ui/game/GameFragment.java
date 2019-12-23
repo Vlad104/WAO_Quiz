@@ -63,10 +63,12 @@ public class GameFragment extends Fragment {
         answersContainer.removeAllViewsInLayout();
         for (Game.Answer answer : question.answers) {
             final Button newButton = new Button(getContext());
-//            newButton.setBackgroundColor(R.color.colorAnswerButton);
-//            final Button newButton = findViewById(R.id.button_id);
-//            newButton.set
-
+            newButton.setBackgroundResource(R.drawable.ic_button_background);
+            newButton.setTextColor(Color.WHITE);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            params.setMargins(8, 8, 8, 8);
+            newButton.setLayoutParams(params);
 
             final boolean isRight = answer.rigth;
             if (isRight) {
@@ -79,7 +81,7 @@ public class GameFragment extends Fragment {
                 public void onClick(View v) {
                     if (clickAllowed) {
                         if (!isRight) {
-                            newButton.setBackgroundColor(Color.RED);
+                            newButton.setBackgroundResource(R.drawable.ic_button_incorrect);
                         }
                         gameLogic(isRight);
                     }
@@ -88,6 +90,12 @@ public class GameFragment extends Fragment {
             answersContainer.addView(newButton);
         }
         nextButton = new Button(getContext());
+        nextButton.setBackgroundResource(R.drawable.ic_button_logic);
+        nextButton.setTextColor(Color.WHITE);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        params.setMargins(8, 8, 8, 8);
+        nextButton.setLayoutParams(params);
         nextButton.setVisibility(View.INVISIBLE);
         answersContainer.addView(nextButton);
     }
@@ -96,7 +104,7 @@ public class GameFragment extends Fragment {
         if (rightButton == null) {
             return;
         }
-        rightButton.setBackgroundColor(Color.GREEN);
+        rightButton.setBackgroundResource(R.drawable.ic_button_correct);
     }
 
     @Override

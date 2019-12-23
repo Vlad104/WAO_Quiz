@@ -8,8 +8,18 @@
     <string name="menu_home">Главная</string>
     <string name="menu_history">История</string>
     <string name="menu_settings">Настройки</string>
+    <string name="menu_about">Авторы</string>
 
     <string name="home">Темы квизов</string>
     <string name="history">История игр</string>
     <string name="history_reset">Сброс истории</string>
+    <string name="settings">Настройки</string>
+    <string name="settings_comment">Все и так уже настроено</string>
+
+    <string name="about">О создателях</string>
+    <string name="about_vlad">Влад: Fullstack</string>
+    <string name="about_dimas">Димас: Frontend</string>
+    <string name="about_igor">Игорь: Fullstack</string>
+    <string name="about_server">Дима: Backend</string>
+    <string name="about_repo">Репозиторий проекта\nhttps://github.com/Vlad104/WAO_Quiz</string>
 </resources>

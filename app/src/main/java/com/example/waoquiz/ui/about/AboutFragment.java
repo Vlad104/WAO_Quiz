@@ -1,4 +1,4 @@
-package com.example.waoquiz.ui.settings;
+package com.example.waoquiz.ui.about;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.waoquiz.R;
 
-public class SettingsFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        return inflater.inflate(R.layout.fragment_about, container, false);
     }
 }
