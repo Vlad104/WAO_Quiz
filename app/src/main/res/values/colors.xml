@@ -7,4 +7,7 @@
     <color name="colorButtonWhiteText">#FFFFFF</color>
     <color name="colorTopMenu">#348232</color>
     <color name="colorSideMenu">#006D32</color>
+    <color name="colorAnswerButtonCorrect">#00FF00</color>
+    <color name="colorAnswerButtonIncorrect">#FF0000</color>
+    <color name="colorAnswerLogic">#0A579E</color>
 </resources>

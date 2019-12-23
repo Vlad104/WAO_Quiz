@@ -16,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/home"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/list_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
